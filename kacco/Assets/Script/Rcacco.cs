@@ -34,13 +34,16 @@ public class Rcacco : MonoBehaviour
         moveSpeed.z += pos.z * 0.3f;
 
         var rot = gameObject.transform.rotation;
+        var addrot = Quaternion.identity;
         if (Input.GetKeyDown(KeyCode.JoystickButton5))
         {
-            
+            Debug.Log("button5");
+            addrot = Quaternion.Euler(0f, 0f, 90f); 
         }
         if (RTrriger <= -0.5 && isTrriger == false)
         {
             Debug.Log("button17");
+            addrot = Quaternion.Euler(0f, 0f, -90f);
             isTrriger = true;
         }
         else if (RTrriger >= -0.5)
@@ -49,5 +52,6 @@ public class Rcacco : MonoBehaviour
         }
 
         gameObject.transform.position = moveSpeed;
+        gameObject.transform.rotation = rot * addrot;
     }
 }
