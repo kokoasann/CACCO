@@ -15,7 +15,11 @@ public class Rcacco : MonoBehaviour
 
     public Vector3 RayDrc;              //レイの向き。
 
-    public GameObject LCACCO;
+    public GameObject LCACCO;           //左のカッコ。
+
+    public GameObject Enemy;            //エネミー。
+
+    public int RHP;                     //右かっこのHP。
 
     private Transform targetTra;
     //　ターゲットとの距離
@@ -30,6 +34,8 @@ public class Rcacco : MonoBehaviour
         RayDrc = gameObject.transform.forward;
         RayDrc.z = RayDrc.y;
         RayDrc.y = 0.0f;
+        Enemy = GameObject.Find("EnemyFmiry");
+        RHP = 15;
         //LCACCO = GameObject.Find("LCacco");
     }
 
@@ -124,9 +130,9 @@ public class Rcacco : MonoBehaviour
         }
         //var lCacco = FindObjectOfType<Lcacco>();
         RaycastHit hit = new RaycastHit();
-        if (Input.GetKeyDown(KeyCode.JoystickButton1))
-        {
-            Debug.Log("Bボタンが押された。");
+        //if (Input.GetKeyDown(KeyCode.JoystickButton1))
+        //{
+        //    Debug.Log("Bボタンが押された。");
            
             //　Cubeのレイを飛ばしターゲットと接触しているか判定
             Debug.Log(RayDrc);
@@ -138,10 +144,34 @@ public class Rcacco : MonoBehaviour
                 if(RayDrc == LDrc)
                 {
                     Debug.Log("ここに敵が消滅する処理");
+                    hit = new RaycastHit();
+                    if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, distanceFromTargetObj, LayerMask.GetMask("Enemy")))
+                    {
+                        Debug.Log("エネミーとレイが衝突した。");
+                        if (Enemy != null)
+                        {
+                        float min = 999999999;
+                        Transform tran=null;
+                        int cont = Enemy.transform.GetChildCount();
+                        for(int i =0;i<cont;i++)
+                        {
+                            var child = Enemy.transform.GetChild(i);
+                            Vector3 kyori;
+                            kyori = hit.transform.position - child.position;
+                            if(kyori.magnitude < min)
+                            {
+                                min = kyori.magnitude;
+                                tran = child;
+                            }
+                        }
+                            Destroy(tran.gameObject);
+                            Debug.Log("消滅した！！！！！！");
+                        }
+                    }
                 }
             }
 
-        }
+        //}
        
    
         gameObject.transform.position = moveSpeed;

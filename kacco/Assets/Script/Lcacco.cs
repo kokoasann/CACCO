@@ -15,6 +15,8 @@ public class Lcacco : MonoBehaviour
 
     public Vector3 RayDrc;              //レイの向き。
 
+    public int LHP;                     //左かっこのHP。
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class Lcacco : MonoBehaviour
         RayDrc = gameObject.transform.forward;
         RayDrc.z = RayDrc.y;
         RayDrc.y = 0.0f;
+        LHP = 15;
     }
 
     // Update is called once per frame
