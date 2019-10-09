@@ -11,10 +11,17 @@ public class Lcacco : MonoBehaviour
 
     bool isTrriger = false;
 
+    public Vector3 direction;           //かっこが向いている方向。
+
+    public Vector3 RayDrc;              //レイの向き。
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        direction = gameObject.transform.forward;
+        RayDrc = gameObject.transform.forward;
+        RayDrc.z = RayDrc.y;
+        RayDrc.y = 0.0f;
     }
 
     // Update is called once per frame
@@ -39,6 +46,27 @@ public class Lcacco : MonoBehaviour
         {
             Debug.Log("button4");
             addrot = Quaternion.Euler(0f, 0f, 90f);
+            if (RayDrc.z >= 0.5f)
+            {
+                Debug.Log("aaaaaaaaaaaaaaaa");
+                RayDrc.x = 1.0f;
+                RayDrc.z = 0.0f;
+            }
+            else if (RayDrc.x >= 0.5f)
+            {
+                RayDrc.z = -1.0f;
+                RayDrc.x = 0.0f;
+            }
+            else if (RayDrc.z <= -0.5f)
+            {
+                RayDrc.x = -1.0f;
+                RayDrc.z = 0.0f;
+            }
+            else if (RayDrc.x <= -0.5f)
+            {
+                RayDrc.z = 1.0f;
+                RayDrc.x = 0.0f;
+            }
         }
         if (LTrriger >= 0.5 && isTrriger == false)
         {
