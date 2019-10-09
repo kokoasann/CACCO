@@ -94,6 +94,27 @@ public class Rcacco : MonoBehaviour
             addrot = Quaternion.Euler(0f, 0f, -90f);
             direction = gameObject.transform.forward;
             //RayDrc = addrot * RayDrc;
+            if (RayDrc.z >= 0.5f)
+            {
+                Debug.Log("aaaaaaaaaaaaaaaa");
+                RayDrc.x = -1.0f;
+                RayDrc.z = 0.0f;
+            }
+            else if (RayDrc.x <= -0.5f)
+            {
+                RayDrc.z = -1.0f;
+                RayDrc.x = 0.0f;
+            }
+            else if (RayDrc.z <= -0.5f)
+            {
+                RayDrc.x = 1.0f;
+                RayDrc.z = 0.0f;
+            }
+            else if (RayDrc.x >= 0.5f)
+            {
+                RayDrc.z = 1.0f;
+                RayDrc.x = 0.0f;
+            }
             isTrriger = true;
         }
         //R2ボタンを離したときの処理。
@@ -103,7 +124,7 @@ public class Rcacco : MonoBehaviour
         }
         //var lCacco = FindObjectOfType<Lcacco>();
         RaycastHit hit = new RaycastHit();
-        if (Input.GetKey(KeyCode.JoystickButton1))
+        if (Input.GetKeyDown(KeyCode.JoystickButton1))
         {
             Debug.Log("Bボタンが押された。");
            

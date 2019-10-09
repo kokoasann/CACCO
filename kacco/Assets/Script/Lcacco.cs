@@ -72,6 +72,27 @@ public class Lcacco : MonoBehaviour
         {
             Debug.Log("button17");
             addrot = Quaternion.Euler(0f, 0f, -90f);
+            if (RayDrc.z >= 0.5f)
+            {
+                Debug.Log("aaaaaaaaaaaaaaaa");
+                RayDrc.x = -1.0f;
+                RayDrc.z = 0.0f;
+            }
+            else if (RayDrc.x <= -0.5f)
+            {
+                RayDrc.z = -1.0f;
+                RayDrc.x = 0.0f;
+            }
+            else if (RayDrc.z <= -0.5f)
+            {
+                RayDrc.x = 1.0f;
+                RayDrc.z = 0.0f;
+            }
+            else if (RayDrc.x >= 0.5f)
+            {
+                RayDrc.z = 1.0f;
+                RayDrc.x = 0.0f;
+            }
             isTrriger = true;
         }
         else if(LTrriger <= 0.5)
