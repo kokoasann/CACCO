@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
@@ -9,18 +10,18 @@ public class Result : MonoBehaviour
     public GameObject time;
     public GameObject HP;
     public GameObject score;
-    TextEditor t_time;
-    TextEditor t_HP;
-    TextEditor t_score;
+    Text t_time;
+    Text t_HP;
+    Text t_score;
 
     GameMaster GM;
     
     // Start is called before the first frame update
     void Start()
     {
-        t_time = time.GetComponent<TextEditor>();
-        t_HP = HP.GetComponent<TextEditor>();
-        t_score = score.GetComponent<TextEditor>();
+        t_time = time.GetComponent<Text>();
+        t_HP = HP.GetComponent<Text>();
+        t_score = score.GetComponent<Text>();
         GM = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         int m = (int)(GM.time/60f);
         float s = GM.time % 60f;
