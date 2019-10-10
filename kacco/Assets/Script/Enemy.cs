@@ -19,23 +19,29 @@ public class Enemy : MonoBehaviour
     protected bool isfirst = true;
     void Start()
     {
-        Target[0] = new Vector3(25, 0, 25);
-        Target[1] = new Vector3(-25, 0, 25);
-        Target[2] = new Vector3(-25, 0, -25);
-        Target[3] = new Vector3(25, 0, -25);
-        Target[4] = new Vector3(0, 0, 25);
-        Target[5] = new Vector3(0, 0, -25);
-        Target[6] = new Vector3(25, 0, 0);
-        Target[7] = new Vector3(-25, 0, 0);
+        Target[0] = new Vector3(100, 0, 50);
+        Target[1] = new Vector3(-100, 0, 50);
+        Target[2] = new Vector3(-100, 0, -50);
+        Target[3] = new Vector3(100, 0, -50);
+        Target[4] = new Vector3(0, 0, 50);
+        Target[5] = new Vector3(0, 0, -50);
+        Target[6] = new Vector3(100, 0, 0);
+        Target[7] = new Vector3(-100, 0, 0);
         nma = GetComponent<NavMeshAgent>();
         RandomPoint();
 
+        LR[0] = GameObject.Find("LCacco");
+        LR[1] = GameObject.Find("RCacco");
+
         LC = LR[0].GetComponent<Lcacco>();
         RC = LR[1].GetComponent<Rcacco>();
+        Debug.Log(LR[0]);
     }
     
     void Update()
     {
+        LC = LR[0].GetComponent<Lcacco>();
+        RC = LR[1].GetComponent<Rcacco>();
         if (nma.hasPath || isLook)
         {
             var f = transform.forward;
@@ -49,9 +55,9 @@ public class Enemy : MonoBehaviour
                 cent.Normalize();
                 var rad = Vector3.Dot(toN, cent);
 
-                if (Mathf.Abs(rad * Mathf.Rad2Deg) < 30 && to.magnitude < 30f)
+                if (Mathf.Abs(Mathf.Acos(rad) * Mathf.Rad2Deg) < 30 && to.magnitude < 30f)
                 {
-                    Debug.Log("oo");
+                    //Debug.Log(this);
                     LRnum = i;
                     isLook = true;
                 }
@@ -83,8 +89,8 @@ public class Enemy : MonoBehaviour
 
     protected void RandomPoint()
     {
-        var x = Random.Range(-25f,25f);
-        var z = Random.Range(-25f,25f);
+        var x = Random.Range(-99f,99f);
+        var z = Random.Range(-50f,50f);
         tar = new Vector3(x, 0, z);
         nma.SetDestination(tar);
         //Debug.Log(tar);

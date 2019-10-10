@@ -21,18 +21,21 @@ public class EneAtt : Enemy
         //var add = Quaternion.FromToRotation(front, top);
         rot *= add;
         transform.rotation = rot;
-
+        
         time += Time.deltaTime;
-        if(time > 3)
+        if(time > 3f)
         {
             if(LRnum == 0)
             {
-                
+                //Debug.Log(LC);
+                LC.LHP += -1;
             }
             else
             {
-
+                //Debug.Log("aaaRR");
+                RC.RHP += -1;
             }
+            time = 0f;
         }
     }
 }
