@@ -48,11 +48,11 @@ public class Lcacco : MonoBehaviour
         var addrot = Quaternion.identity;
         if (Input.GetKeyDown(KeyCode.JoystickButton4))
         {
-            Debug.Log("button4");
+            //Debug.Log("button4");
             addrot = Quaternion.Euler(0f, 0f, 90f);
             if (RayDrc.z >= 0.5f)
             {
-                Debug.Log("aaaaaaaaaaaaaaaa");
+                //Debug.Log("aaaaaaaaaaaaaaaa");
                 RayDrc.x = 1.0f;
                 RayDrc.z = 0.0f;
             }
@@ -74,11 +74,11 @@ public class Lcacco : MonoBehaviour
         }
         if (LTrriger >= 0.5 && isTrriger == false)
         {
-            Debug.Log("button17");
+            //Debug.Log("button17");
             addrot = Quaternion.Euler(0f, 0f, -90f);
             if (RayDrc.z >= 0.5f)
             {
-                Debug.Log("aaaaaaaaaaaaaaaa");
+                //Debug.Log("aaaaaaaaaaaaaaaa");
                 RayDrc.x = -1.0f;
                 RayDrc.z = 0.0f;
             }

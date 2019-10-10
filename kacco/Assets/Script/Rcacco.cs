@@ -64,7 +64,7 @@ public class Rcacco : MonoBehaviour
         //R1ボタンを押したときの処理。
         if (Input.GetKeyDown(KeyCode.JoystickButton5))
         {
-            Debug.Log("button5");
+            //Debug.Log("button5");
             addrot = Quaternion.Euler(0f, 0f, 90f);
             direction = gameObject.transform.forward;
             //RayDrc = addrot * RayDrc;
@@ -97,13 +97,13 @@ public class Rcacco : MonoBehaviour
         //R2ボタンを押したときの処理。
         if (RTrriger <= -0.5 && isTrriger == false)
         {
-            Debug.Log("button17");
+           // Debug.Log("button17");
             addrot = Quaternion.Euler(0f, 0f, -90f);
             direction = gameObject.transform.forward;
             //RayDrc = addrot * RayDrc;
             if (RayDrc.z >= 0.5f)
             {
-                Debug.Log("aaaaaaaaaaaaaaaa");
+               // Debug.Log("aaaaaaaaaaaaaaaa");
                 RayDrc.x = -1.0f;
                 RayDrc.z = 0.0f;
             }
@@ -137,32 +137,29 @@ public class Rcacco : MonoBehaviour
         //    Debug.Log("Bボタンが押された。");
            
             //　Cubeのレイを飛ばしターゲットと接触しているか判定
-            Debug.Log(RayDrc);
+            //Debug.Log(RayDrc);
        
         if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, 15, LayerMask.GetMask("Target")))
         {
-            Debug.Log("右から左にレイが当たった");
+            //Debug.Log("右から左にレイが当たった");
             Vector3 normal = LCACCO.GetComponent<Lcacco>().transform.position - transform.position;
             normal.Normalize();
 
 
-            if (Physics.BoxCast(this.transform.position - normal, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, distanceFromTargetObj, LayerMask.GetMask("Wall")))
+            if (!Physics.BoxCast(this.transform.position - normal, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, distanceFromTargetObj, LayerMask.GetMask("Wall")))
+            
             {
-                Debug.Log("壁に当たった");
-            }
-            else
-            {
-                Debug.Log("壁に当たらなかったので");
+                //Debug.Log("壁に当たらなかったので");
                 Vector3 LDrc;
                 LDrc = LCACCO.GetComponent<Lcacco>().RayDrc;
                 
                 if (RayDrc == LDrc)
                 {
-                    Debug.Log("ここに敵が消滅する処理");
+                    //Debug.Log("ここに敵が消滅する処理");
                     hit = new RaycastHit();
                     if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, distanceFromTargetObj, LayerMask.GetMask("Enemy")))
                     {
-                        Debug.Log("エネミーとレイが衝突した。");
+                        //Debug.Log("エネミーとレイが衝突した。");
                         if (Enemy != null)
                         {
                             float min = 999999999;
@@ -180,7 +177,7 @@ public class Rcacco : MonoBehaviour
                                 }
                             }
                             Destroy(tran.gameObject);
-                            Debug.Log("消滅した！！！！！！");
+                            //Debug.Log("消滅した！！！！！！");
                         }
                     }
                 }
