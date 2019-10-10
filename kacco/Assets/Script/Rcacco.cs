@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rcacco : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class Rcacco : MonoBehaviour
 
     public GameObject Enemy;            //エネミー。
 
-    public int RHP;                     //右かっこのHP。
+    public float RHP;                     //右かっこのHP。
 
     CharacterController CharaCon;       //キャラコン。
 
@@ -48,6 +49,11 @@ public class Rcacco : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(RHP <= 0.0f)
+        {
+            Dead();
+        }
+
         //ターゲットとの距離。
         distanceFromTargetObj = Vector3.Distance(transform.position, LCACCO.GetComponent<Lcacco>().transform.position);
         //移動処理。
@@ -133,7 +139,7 @@ public class Rcacco : MonoBehaviour
             //　Cubeのレイを飛ばしターゲットと接触しているか判定
             Debug.Log(RayDrc);
        
-        if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, 1000f, LayerMask.GetMask("Target")))
+        if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, 15, LayerMask.GetMask("Target")))
         {
             Debug.Log("右から左にレイが当たった");
             Vector3 normal = LCACCO.GetComponent<Lcacco>().transform.position - transform.position;
@@ -207,5 +213,10 @@ public class Rcacco : MonoBehaviour
         pos *= 0.15f;
         pos.y = 0.0f;
         pos.y -= 1.0f;
+    }
+
+    private void Dead()
+    {
+        SceneManager.LoadScene("GameOverScene");
     }
 }

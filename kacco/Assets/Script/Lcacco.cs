@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Lcacco : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Lcacco : MonoBehaviour
 
     public Vector3 RayDrc;              //レイの向き。
 
-    public int LHP;                     //左かっこのHP。
+    public float LHP;                     //左かっこのHP。
 
     CharacterController CharaCon;       //キャラコン。
 
@@ -37,6 +38,10 @@ public class Lcacco : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LHP <= 0.0f)
+        {
+            Dead();
+        }
         Move();
        
         var rot = gameObject.transform.rotation;
@@ -118,5 +123,9 @@ public class Lcacco : MonoBehaviour
         pos *= 0.15f;
         pos.y = 0.0f;
         pos.y -= 1.0f;
+    }
+    private void Dead()
+    {
+        SceneManager.LoadScene("GameOverScene");
     }
 }
