@@ -8,6 +8,7 @@ public class EneRun : Enemy
     {
         if (isfirst)
         {
+            nma.speed = 5f;
             Vector3 tarpo = new Vector3();
             Vector3 tarto = new Vector3();
             Debug.Log("..:..");
@@ -27,7 +28,9 @@ public class EneRun : Enemy
         var tor = LR[LRnum].transform.position - transform.position;
         if (tor.magnitude >20)
         {
+            nma.speed = 1f;
             isLook = false;
+            RandomPoint();
         }
     }
 }

@@ -43,12 +43,15 @@ public class Enemy : MonoBehaviour
             {
                 var lrpo = LR[i].transform.position;
                 var to = lrpo - transform.position;
-                to.Normalize();
-                var rad = Vector3.Dot(to, transform.position);
+                var toN = to;
+                toN.Normalize();
+                var cent = transform.rotation * Vector3.forward;
+                cent.Normalize();
+                var rad = Vector3.Dot(toN, cent);
 
-                if (Mathf.Abs(rad * Mathf.Rad2Deg) < 60)
+                if (Mathf.Abs(rad * Mathf.Rad2Deg) < 30 && to.magnitude < 30f)
                 {
-                    
+                    Debug.Log("oo");
                     LRnum = i;
                     isLook = true;
                 }
@@ -66,25 +69,25 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                Debug.Log("^^;;;");
+                //Debug.Log("^^;;;");
                 TargetAction();
             }
         }
         else
         {
-            Debug.Log("^^;");
+            //Debug.Log("^^;");
             RandomPoint();
         }
     }
 
 
-    void RandomPoint()
+    protected void RandomPoint()
     {
         var x = Random.Range(-25f,25f);
         var z = Random.Range(-25f,25f);
         tar = new Vector3(x, 0, z);
         nma.SetDestination(tar);
-        Debug.Log(tar);
+        //Debug.Log(tar);
     }
     virtual public void TargetAction() { }
 }

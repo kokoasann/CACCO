@@ -136,6 +136,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   RayDrc: {x: 0, y: 0, z: 0}
   LCACCO: {fileID: 1631461393}
+  Enemy: {fileID: 0}
+  RHP: 0
 --- !u!1001 &341459051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,7 +220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356290088}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 041606bcdbeff864385d5b2168c32f21, type: 3}
   m_Name: 
@@ -233,8 +235,8 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   LR:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1631461393}
+  - {fileID: 216432360}
 --- !u!114 &356290094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +244,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356290088}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0ca37bc433a78b4cb6c5235ddfb17ea, type: 3}
   m_Name: 
@@ -684,6 +686,7 @@ MonoBehaviour:
   LTrriger: 0
   direction: {x: 0, y: 0, z: 0}
   RayDrc: {x: 0, y: 0, z: 0}
+  LHP: 0
 --- !u!1 &1914399242
 GameObject:
   m_ObjectHideFlags: 0
