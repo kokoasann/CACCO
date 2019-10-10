@@ -35,8 +35,8 @@ public class GameMaster : MonoBehaviour
             {
                 HP = LC.LHP + RC.RHP;
                 isResult = true;
-                SceneManager.LoadSceneAsync("Scene/ResultScene");
-                SceneManager.UnloadSceneAsync("Scene/SampleScene");
+                SceneManager.LoadSceneAsync("Scenes/ResultScene");
+                SceneManager.UnloadSceneAsync("Scenes/SampleScene");
             }
             
         }

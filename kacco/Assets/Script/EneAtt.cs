@@ -11,6 +11,7 @@ public class EneAtt : Enemy
         var tpo = LR[LRnum].transform.position;
         var pos = transform.position;
         var top = pos - tpo;
+        var to = top;
 
         var rot = transform.rotation;
         var front = rot * Vector3.forward;
@@ -36,6 +37,10 @@ public class EneAtt : Enemy
                 RC.RHP += -1;
             }
             time = 0f;
+        }
+        if (to.magnitude < 30f)
+        {
+            isLook = false;
         }
     }
 }
