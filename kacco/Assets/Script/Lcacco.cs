@@ -17,32 +17,28 @@ public class Lcacco : MonoBehaviour
 
     public int LHP;                     //左かっこのHP。
 
+    CharacterController CharaCon;       //キャラコン。
+
+    Vector3 pos;
+
     // Start is called before the first frame update
     void Start()
     {
+        pos = gameObject.transform.position;
         direction = gameObject.transform.forward;
         RayDrc = gameObject.transform.forward;
         RayDrc.z = RayDrc.y;
         RayDrc.y = 0.0f;
         LHP = 15;
+        CharaCon = gameObject.GetComponent<CharacterController>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        LstickX = Input.GetAxis("Horizontal");
-        LstickY = Input.GetAxis("Vertical");
-
-        LTrriger = Input.GetAxis("LTrriger");
-
-        var pos = gameObject.transform.position;
-        pos.x = LstickX;
-        pos.z = LstickY;
-
-        var moveSpeed = gameObject.transform.position;
-        moveSpeed.x += pos.x * 0.3f;
-        moveSpeed.z += pos.z * 0.3f;
-
+        Move();
+       
         var rot = gameObject.transform.rotation;
         var addrot = Quaternion.identity;
         if (Input.GetKeyDown(KeyCode.JoystickButton4))
@@ -103,7 +99,24 @@ public class Lcacco : MonoBehaviour
             isTrriger = false;
         }
 
-        gameObject.transform.position = moveSpeed;
+        CharaCon.Move(pos);
+
+        //gameObject.transform.position = moveSpeed;
         gameObject.transform.rotation = rot * addrot;
+    }
+
+    private void Move()
+    {
+        LstickX = Input.GetAxis("Horizontal");
+        LstickY = Input.GetAxis("Vertical");
+
+        LTrriger = Input.GetAxis("LTrriger");
+
+        pos.x = LstickX;
+        pos.z = LstickY;
+
+        pos *= 0.15f;
+        pos.y = 0.0f;
+        pos.y -= 1.0f;
     }
 }

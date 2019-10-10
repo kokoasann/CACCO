@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 39991767}
   - component: {fileID: 39991766}
   - component: {fileID: 39991765}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 158106361}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 274537804}
   - component: {fileID: 274537803}
   - component: {fileID: 274537802}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,6 +458,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5153096781998480294}
   m_PrefabAsset: {fileID: 0}
+--- !u!143 &275475824
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275475819}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.19745077
+  m_Radius: 0.04468371
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0.05}
 --- !u!1 &376990631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2316849856354533396, guid: 32bc730632d9e8a4c8c5c0cf77c49fd8,
@@ -1083,7 +1101,7 @@ GameObject:
   - component: {fileID: 1828680127}
   - component: {fileID: 1828680126}
   - component: {fileID: 1828680125}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1242,7 +1260,7 @@ PrefabInstance:
     - target: {fileID: 818398102476691991, guid: f86ab6385c4b97946b0cdd96f72f0619,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 818398102476691991, guid: f86ab6385c4b97946b0cdd96f72f0619,
         type: 3}
@@ -1289,6 +1307,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 8652501478006638055, guid: f86ab6385c4b97946b0cdd96f72f0619,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652501478006638055, guid: f86ab6385c4b97946b0cdd96f72f0619,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f86ab6385c4b97946b0cdd96f72f0619, type: 3}
 --- !u!1001 &5153096781998480294
@@ -1311,7 +1339,7 @@ PrefabInstance:
     - target: {fileID: 3089315222311780498, guid: a1ff0fee6389a7b49b8bfab83fbcc509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5000012
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 3089315222311780498, guid: a1ff0fee6389a7b49b8bfab83fbcc509,
         type: 3}
