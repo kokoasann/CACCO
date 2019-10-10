@@ -19,9 +19,12 @@ public class Lcacco : MonoBehaviour
 
     CharacterController CharaCon;       //キャラコン。
 
+    Vector3 pos;
+
     // Start is called before the first frame update
     void Start()
     {
+        pos = gameObject.transform.position;
         direction = gameObject.transform.forward;
         RayDrc = gameObject.transform.forward;
         RayDrc.z = RayDrc.y;
@@ -34,24 +37,8 @@ public class Lcacco : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Move();
        
-        LstickX = Input.GetAxis("Horizontal");
-        LstickY = Input.GetAxis("Vertical");
-
-        LTrriger = Input.GetAxis("LTrriger");
-
-        var pos = gameObject.transform.position;
-        pos.x = LstickX;
-        pos.z = LstickY;
-
-        var moveSpeed = gameObject.transform.position;
-
-        pos *= 0.15f;
-        pos.y = 0.0f;
-        pos.y -= 1.0f;
-        //moveSpeed.x += pos.x * 0.3f;
-        //moveSpeed.z += pos.z * 0.3f;
-
         var rot = gameObject.transform.rotation;
         var addrot = Quaternion.identity;
         if (Input.GetKeyDown(KeyCode.JoystickButton4))
@@ -116,5 +103,20 @@ public class Lcacco : MonoBehaviour
 
         //gameObject.transform.position = moveSpeed;
         gameObject.transform.rotation = rot * addrot;
+    }
+
+    private void Move()
+    {
+        LstickX = Input.GetAxis("Horizontal");
+        LstickY = Input.GetAxis("Vertical");
+
+        LTrriger = Input.GetAxis("LTrriger");
+
+        pos.x = LstickX;
+        pos.z = LstickY;
+
+        pos *= 0.15f;
+        pos.y = 0.0f;
+        pos.y -= 1.0f;
     }
 }

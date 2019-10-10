@@ -23,6 +23,8 @@ public class Rcacco : MonoBehaviour
 
     CharacterController CharaCon;       //キャラコン。
 
+    Vector3 pos;
+
     private Transform targetTra;
     //　ターゲットとの距離
     private float distanceFromTargetObj;
@@ -39,6 +41,7 @@ public class Rcacco : MonoBehaviour
         Enemy = GameObject.Find("EnemyFmiry");
         RHP = 15;
         CharaCon = gameObject.GetComponent<CharacterController>();
+        pos = gameObject.transform.position;
         //LCACCO = GameObject.Find("LCacco");
     }
 
@@ -47,23 +50,8 @@ public class Rcacco : MonoBehaviour
     {
         //ターゲットとの距離。
         distanceFromTargetObj = Vector3.Distance(transform.position, LCACCO.GetComponent<Lcacco>().transform.position);
-
-        RstickX = Input.GetAxis("Horizontal2");
-        RstickY = Input.GetAxis("Vertical2");
-
-        RTrriger = Input.GetAxis("LTrriger");
-
-        var pos = gameObject.transform.position;
-        pos.x = RstickX;
-        pos.z = RstickY;
-
-        var moveSpeed = gameObject.transform.position;
-
-        pos *= 0.15f;
-        pos.y = 0.0f;
-        pos.y -= 1.0f;
-        //moveSpeed.x += pos.x * 0.3f;
-        //moveSpeed.z += pos.z * 0.3f;
+        //移動処理。
+        Move();
 
         var rot = gameObject.transform.rotation;
         var addrot = Quaternion.identity;
@@ -137,18 +125,32 @@ public class Rcacco : MonoBehaviour
         }
         //var lCacco = FindObjectOfType<Lcacco>();
         RaycastHit hit = new RaycastHit();
+
         //if (Input.GetKeyDown(KeyCode.JoystickButton1))
         //{
         //    Debug.Log("Bボタンが押された。");
            
             //　Cubeのレイを飛ばしターゲットと接触しているか判定
             Debug.Log(RayDrc);
-            if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, 1000f, LayerMask.GetMask("Target")))
+       
+        if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, 1000f, LayerMask.GetMask("Target")))
+        {
+            Debug.Log("右から左にレイが当たった");
+            Vector3 normal = LCACCO.GetComponent<Lcacco>().transform.position - transform.position;
+            normal.Normalize();
+
+
+            if (Physics.BoxCast(this.transform.position - normal, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, distanceFromTargetObj, LayerMask.GetMask("Wall")))
             {
+                Debug.Log("壁に当たった");
+            }
+            else
+            {
+                Debug.Log("壁に当たらなかったので");
                 Vector3 LDrc;
                 LDrc = LCACCO.GetComponent<Lcacco>().RayDrc;
-                Debug.Log("右から左にレイが当たった");
-                if(RayDrc == LDrc)
+                
+                if (RayDrc == LDrc)
                 {
                     Debug.Log("ここに敵が消滅する処理");
                     hit = new RaycastHit();
@@ -157,26 +159,27 @@ public class Rcacco : MonoBehaviour
                         Debug.Log("エネミーとレイが衝突した。");
                         if (Enemy != null)
                         {
-                        float min = 999999999;
-                        Transform tran=null;
-                        int cont = Enemy.transform.GetChildCount();
-                        for(int i =0;i<cont;i++)
-                        {
-                            var child = Enemy.transform.GetChild(i);
-                            Vector3 kyori;
-                            kyori = hit.transform.position - child.position;
-                            if(kyori.magnitude < min)
+                            float min = 999999999;
+                            Transform tran = null;
+                            int cont = Enemy.transform.GetChildCount();
+                            for (int i = 0; i < cont; i++)
                             {
-                                min = kyori.magnitude;
-                                tran = child;
+                                var child = Enemy.transform.GetChild(i);
+                                Vector3 kyori;
+                                kyori = hit.transform.position - child.position;
+                                if (kyori.magnitude < min)
+                                {
+                                    min = kyori.magnitude;
+                                    tran = child;
+                                }
                             }
-                        }
                             Destroy(tran.gameObject);
                             Debug.Log("消滅した！！！！！！");
                         }
                     }
                 }
             }
+        }
 
         //}
 
@@ -189,5 +192,20 @@ public class Rcacco : MonoBehaviour
         //　Cubeのレイを疑似的に視覚化
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + transform.forward * distanceFromTargetObj, Vector3.one);
+    }
+    //移動処理。
+    private void Move()
+    {
+        RstickX = Input.GetAxis("Horizontal2");
+        RstickY = Input.GetAxis("Vertical2");
+
+        RTrriger = Input.GetAxis("LTrriger");
+
+        pos.x = RstickX;
+        pos.z = RstickY;
+
+        pos *= 0.15f;
+        pos.y = 0.0f;
+        pos.y -= 1.0f;
     }
 }
