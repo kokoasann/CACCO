@@ -21,6 +21,8 @@ public class Rcacco : MonoBehaviour
 
     public int RHP;                     //右かっこのHP。
 
+    CharacterController CharaCon;       //キャラコン。
+
     private Transform targetTra;
     //　ターゲットとの距離
     private float distanceFromTargetObj;
@@ -36,6 +38,7 @@ public class Rcacco : MonoBehaviour
         RayDrc.y = 0.0f;
         Enemy = GameObject.Find("EnemyFmiry");
         RHP = 15;
+        CharaCon = gameObject.GetComponent<CharacterController>();
         //LCACCO = GameObject.Find("LCacco");
     }
 
@@ -55,8 +58,12 @@ public class Rcacco : MonoBehaviour
         pos.z = RstickY;
 
         var moveSpeed = gameObject.transform.position;
-        moveSpeed.x += pos.x * 0.3f;
-        moveSpeed.z += pos.z * 0.3f;
+
+        pos *= 0.15f;
+        pos.y = 0.0f;
+        pos.y -= 1.0f;
+        //moveSpeed.x += pos.x * 0.3f;
+        //moveSpeed.z += pos.z * 0.3f;
 
         var rot = gameObject.transform.rotation;
         var addrot = Quaternion.identity;
@@ -172,9 +179,9 @@ public class Rcacco : MonoBehaviour
             }
 
         //}
-       
-   
-        gameObject.transform.position = moveSpeed;
+
+        CharaCon.Move(pos);
+        //gameObject.transform.position = moveSpeed;
         gameObject.transform.rotation = rot * addrot;
     }
     void OnDrawGizmos()

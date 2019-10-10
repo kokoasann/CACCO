@@ -17,6 +17,8 @@ public class Lcacco : MonoBehaviour
 
     public int LHP;                     //左かっこのHP。
 
+    CharacterController CharaCon;       //キャラコン。
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +27,14 @@ public class Lcacco : MonoBehaviour
         RayDrc.z = RayDrc.y;
         RayDrc.y = 0.0f;
         LHP = 15;
+        CharaCon = gameObject.GetComponent<CharacterController>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+       
         LstickX = Input.GetAxis("Horizontal");
         LstickY = Input.GetAxis("Vertical");
 
@@ -40,8 +45,12 @@ public class Lcacco : MonoBehaviour
         pos.z = LstickY;
 
         var moveSpeed = gameObject.transform.position;
-        moveSpeed.x += pos.x * 0.3f;
-        moveSpeed.z += pos.z * 0.3f;
+
+        pos *= 0.15f;
+        pos.y = 0.0f;
+        pos.y -= 1.0f;
+        //moveSpeed.x += pos.x * 0.3f;
+        //moveSpeed.z += pos.z * 0.3f;
 
         var rot = gameObject.transform.rotation;
         var addrot = Quaternion.identity;
@@ -103,7 +112,9 @@ public class Lcacco : MonoBehaviour
             isTrriger = false;
         }
 
-        gameObject.transform.position = moveSpeed;
+        CharaCon.Move(pos);
+
+        //gameObject.transform.position = moveSpeed;
         gameObject.transform.rotation = rot * addrot;
     }
 }
