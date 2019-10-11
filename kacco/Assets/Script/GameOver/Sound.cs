@@ -31,7 +31,7 @@ public class Sound : MonoBehaviour
         {
             if (!sound01.isPlaying)
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
     }
