@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 818398102476691991}
   - component: {fileID: 818398102473824823}
   - component: {fileID: 818398102474922231}
-  - component: {fileID: 818398102589133469}
   - component: {fileID: 8652501478006638055}
+  - component: {fileID: 1320488900}
   m_Layer: 8
   m_Name: LCacco 1
   m_TagString: Untagged
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818398102476916279}
-  m_Mesh: {fileID: 4300000, guid: 7d60eb8eb40a5004aa48b98fb32b2576, type: 3}
+  m_Mesh: {fileID: 4300000, guid: e6c4516b6f8b1774290a4fd99ac7f188, type: 3}
 --- !u!23 &818398102474922231
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7d60eb8eb40a5004aa48b98fb32b2576, type: 3}
+  - {fileID: 2100000, guid: 60c8d8c4e74d5d946b3ab7afc3f0dd9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,23 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &818398102589133469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818398102476916279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df3060152bba02a4da25345b43da05b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LstickX: 0
-  LstickY: 0
-  LTrriger: 0
-  direction: {x: 0, y: 0, z: 0}
-  RayDrc: {x: 0, y: 0, z: 0}
 --- !u!143 &8652501478006638055
 CharacterController:
   m_ObjectHideFlags: 0
@@ -114,3 +97,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1320488900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818398102476916279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00bdf51a2d0ea742911720e3af87c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LstickX: 0
+  LstickY: 0
+  LTrriger: 0
+  direction: {x: 0, y: 0, z: 0}
+  RayDrc: {x: 0, y: 0, z: 0}
+  LHP: 0

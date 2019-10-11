@@ -26,11 +26,11 @@ public class Rcacco : MonoBehaviour
 
     Vector3 pos;
 
+    private AudioSource sound01;
+
     private Transform targetTra;
     //　ターゲットとの距離
     private float distanceFromTargetObj;
-
-    //Lcacco LCacco;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,7 @@ public class Rcacco : MonoBehaviour
         RHP = 15;
         CharaCon = gameObject.GetComponent<CharacterController>();
         pos = gameObject.transform.position;
-        //LCACCO = GameObject.Find("LCacco");
+        sound01 = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -176,6 +176,7 @@ public class Rcacco : MonoBehaviour
                                     tran = child;
                                 }
                             }
+                            sound01.PlayOneShot(sound01.clip);
                             Destroy(tran.gameObject);
                             //Debug.Log("消滅した！！！！！！");
                         }
