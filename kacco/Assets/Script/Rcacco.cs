@@ -159,15 +159,15 @@ public class Rcacco : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.JoystickButton1))
         //{
         //    Debug.Log("Bボタンが押された。");
-           
-            //　Cubeのレイを飛ばしターゲットと接触しているか判定
-            //Debug.Log(RayDrc);
-       
-        if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, 15, LayerMask.GetMask("Target")))
+
+        //　Cubeのレイを飛ばしターゲットと接触しているか判定
+        //Debug.Log(RayDrc);
+        Vector3 normal = LCACCO.GetComponent<Lcacco>().transform.position - transform.position;
+        normal.Normalize();
+        if (Physics.BoxCast(this.transform.position - normal, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, 15, LayerMask.GetMask("Target")))
         {
             //Debug.Log("右から左にレイが当たった");
-            Vector3 normal = LCACCO.GetComponent<Lcacco>().transform.position - transform.position;
-            normal.Normalize();
+           
 
 
             if (!Physics.BoxCast(this.transform.position - normal, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, distanceFromTargetObj, LayerMask.GetMask("Wall")))
@@ -181,7 +181,7 @@ public class Rcacco : MonoBehaviour
                 {
                     //Debug.Log("ここに敵が消滅する処理");
                     hit = new RaycastHit();
-                    if (Physics.BoxCast(this.transform.position, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, distanceFromTargetObj, LayerMask.GetMask("Enemy")))
+                    if (Physics.BoxCast(this.transform.position - normal, Vector3.one * 1.0f, RayDrc, out hit, Quaternion.identity, distanceFromTargetObj, LayerMask.GetMask("Enemy")))
                     {
                         //Debug.Log("エネミーとレイが衝突した。");
                         if (Enemy != null)
