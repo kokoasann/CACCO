@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     protected Vector3 tar;
     protected bool isLook = false;
     protected bool isfirst = true;
+    protected AudioSource SE = null;
+    protected GameObject effect = null;
     void Start()
     {
         Target[0] = new Vector3(100, 0, 50);
@@ -35,6 +37,8 @@ public class Enemy : MonoBehaviour
 
         LC = LR[0].GetComponent<Lcacco>();
         RC = LR[1].GetComponent<Rcacco>();
+        SE = GetComponent<AudioSource>();
+        effect = Resources.Load<GameObject>("SmallExplosionEffect");
     }
     
     void Update()

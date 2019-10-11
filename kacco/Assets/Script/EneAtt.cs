@@ -42,7 +42,6 @@ public class EneAtt : Enemy
             }
         }
         transform.localScale = Vector3.one * 0.3f * va;
-        Debug.Log("aaaa");
 
         time += Time.deltaTime;
         if(time > 3f)
@@ -57,11 +56,13 @@ public class EneAtt : Enemy
                 //Debug.Log("aaaRR");
                 RC.RHP += -1;
             }
+            SE.PlayOneShot(SE.clip);
+            var eff = Instantiate(effect, LR[LRnum].transform.position, Quaternion.identity);
+            eff.transform.localScale = Vector3.one * 0.3f;
             time = 0f;
         }
-        if (to.magnitude > 30f)
+        if (to.magnitude > 15f)
         {
-            Debug.Log(to);
             transform.localScale = Vector3.one * 0.3f;
             isLook = false;
         }

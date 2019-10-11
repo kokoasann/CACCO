@@ -13,6 +13,7 @@ public class GameMaster : MonoBehaviour
 
     public GameObject TimeText;
     Text tex_time;
+    public float MAXTime;
     public float time = 0.0f;
     public float HP = 0.0f;
     bool isResult = false;
@@ -27,6 +28,7 @@ public class GameMaster : MonoBehaviour
         LC = LR[0].GetComponent<Lcacco>();
         RC = LR[1].GetComponent<Rcacco>();
         tex_time = TimeText.GetComponent<Text>();
+        time = MAXTime;
     }
 
     // Update is called once per frame

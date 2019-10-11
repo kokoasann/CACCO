@@ -23,6 +23,7 @@ public class Result : MonoBehaviour
         t_HP = HP.GetComponent<Text>();
         t_score = score.GetComponent<Text>();
         GM = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+        GM.time = GM.MAXTime - GM.time;
         int m = (int)(GM.time/60f);
         float s = GM.time % 60f;
         t_time.text += m.ToString() + ":" + s.ToString();
