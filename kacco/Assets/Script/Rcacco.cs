@@ -28,6 +28,14 @@ public class Rcacco : MonoBehaviour
 
     private AudioSource sound01;
 
+    GameObject go;
+
+    ParticleSystem effect;
+
+    List<ParticleSystem> eff = new List<ParticleSystem>();
+
+    List<ParticleSystem> effdeath = new List<ParticleSystem>();
+
     private Transform targetTra;
     //　ターゲットとの距離
     private float distanceFromTargetObj;
@@ -44,12 +52,28 @@ public class Rcacco : MonoBehaviour
         CharaCon = gameObject.GetComponent<CharacterController>();
         pos = gameObject.transform.position;
         sound01 = GetComponent<AudioSource>();
+        go = Resources.Load<GameObject>("PlasmaExplosionEffect");
+        effect = go.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(RHP <= 0.0f)
+        foreach(var eee in eff)
+        {
+            if(!eee.isPlaying)
+            {
+                Destroy(eee.gameObject);
+                effdeath.Add(eee);
+            }
+        }
+        foreach(var eee in effdeath)
+        {
+            eff.Remove(eee);
+        }
+        effdeath.Clear();
+
+        if (RHP <= 0.0f)
         {
             Dead();
         }
@@ -178,6 +202,9 @@ public class Rcacco : MonoBehaviour
                             }
                             sound01.PlayOneShot(sound01.clip);
                             Destroy(tran.gameObject);
+                           
+                            eff.Add(Instantiate(go, tran.transform.position, Quaternion.identity).GetComponent<ParticleSystem>());
+                            
                             //Debug.Log("消滅した！！！！！！");
                         }
                     }
