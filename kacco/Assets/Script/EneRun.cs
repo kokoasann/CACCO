@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EneRun : Enemy
 {
+    float va = 0f;
+    bool AS = false;
     public override void TargetAction()
     {
         if (isfirst)
@@ -11,7 +13,7 @@ public class EneRun : Enemy
             nma.speed = 5f;
             Vector3 tarpo = new Vector3();
             Vector3 tarto = new Vector3();
-            Debug.Log("..:..");
+            //Debug.Log("..:..");
             foreach (var ta in Target)
             {
                 var to = ta - LR[LRnum].transform.position;
@@ -25,8 +27,10 @@ public class EneRun : Enemy
             nma.SetDestination(tarpo);
             isfirst = false;
         }
+
+        
         var tor = LR[LRnum].transform.position - transform.position;
-        if (tor.magnitude >20)
+        if (tor.magnitude > 20)
         {
             nma.speed = 1f;
             isLook = false;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class EneAtt : Enemy
 {
     float time = 0.0f;
+    float va = 0f;
+    bool AS = false;
     public override void TargetAction() 
     {
         nma.SetDestination(transform.position);
@@ -22,7 +24,26 @@ public class EneAtt : Enemy
         //var add = Quaternion.FromToRotation(front, top);
         rot *= add;
         transform.rotation = rot;
-        
+
+        if (AS)
+        {
+            va -= Time.deltaTime*3f;
+            if (va <= 0.5f)
+            {
+                AS = false;
+            }
+        }
+        else
+        {
+            va += Time.deltaTime*3f;
+            if (va >= 1.5f)
+            {
+                AS = true;
+            }
+        }
+        transform.localScale = Vector3.one * 0.3f * va;
+        Debug.Log("aaaa");
+
         time += Time.deltaTime;
         if(time > 3f)
         {
@@ -38,8 +59,10 @@ public class EneAtt : Enemy
             }
             time = 0f;
         }
-        if (to.magnitude < 30f)
+        if (to.magnitude > 30f)
         {
+            Debug.Log(to);
+            transform.localScale = Vector3.one * 0.3f;
             isLook = false;
         }
     }

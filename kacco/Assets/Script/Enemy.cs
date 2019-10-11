@@ -35,7 +35,6 @@ public class Enemy : MonoBehaviour
 
         LC = LR[0].GetComponent<Lcacco>();
         RC = LR[1].GetComponent<Rcacco>();
-        Debug.Log(LR[0]);
     }
     
     void Update()
@@ -54,7 +53,7 @@ public class Enemy : MonoBehaviour
                 var cent = transform.rotation * Vector3.forward;
                 cent.Normalize();
                 var rad = Vector3.Dot(toN, cent);
-
+                //Debug.Log(Mathf.Acos(rad) * Mathf.Rad2Deg);
                 if (Mathf.Abs(Mathf.Acos(rad) * Mathf.Rad2Deg) < 30 && to.magnitude < 30f)
                 {
                     //Debug.Log(this);
